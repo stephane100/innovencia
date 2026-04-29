@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoiceBook AI — Votre Standard IA Disponible 24h/24</title>
+<meta name="description" content="Agent vocal IA qui répond à vos appels, prend les rendez-vous et gère les urgences 24h/24. Plus d'appels manqués, plus d'attente, plus de recrutement.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --dark: #0f172a;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --text: #475569;
+  --heading: #0f172a;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --cyan: #06b6d4;
+  --green: #10b981;
+  --orange: #f59e0b;
+  --purple: #7c3aed;
+  --accent: linear-gradient(135deg, #2563eb, #06b6d4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.7; overflow-x: hidden; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+a { text-decoration: none; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-size: 1.3rem; font-weight: 900; color: var(--heading);
+}
+.nav-logo span {
+  background: var(--accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text); transition: color 0.2s; }
+.nav-links a:hover { color: var(--heading); }
+.nav-cta {
+  background: var(--blue); color: white; padding: 10px 24px;
+  border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+  transition: all 0.2s; border: none; cursor: pointer;
+}
+.nav-cta:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+
+/* HERO */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+}
+.hero-pill {
+  display: inline-block;
+  background: rgba(37,99,235,0.08); color: var(--blue);
+  padding: 6px 18px; border-radius: 20px;
+  font-size: 0.85rem; font-weight: 600;
+  margin-bottom: 24px; border: 1px solid rgba(37,99,235,0.15);
+}
+.hero h1 {
+  font-size: 3.5rem; font-weight: 900;
+  color: var(--heading); line-height: 1.1;
+  margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;
+}
+.hero h1 span {
+  background: var(--accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 1.25rem; color: var(--text);
+  max-width: 600px; margin: 0 auto 40px;
+}
+.hero-ctas {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--blue); color: white;
+  padding: 14px 32px; border-radius: 10px;
+  font-weight: 700; font-size: 1rem;
+  transition: all 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); color: white; }
+.btn-secondary {
+  background: var(--surface); color: var(--heading);
+  padding: 14px 32px; border-radius: 10px;
+  font-weight: 700; font-size: 1rem;
+  border: 1px solid var(--border);
+  transition: all 0.2s; display: inline-block;
+}
+.btn-secondary:hover { background: white; border-color: var(--blue); color: var(--blue); }
+
+.hero-proof {
+  margin-top: 40px;
+  font-size: 0.85rem; color: #94a3b8;
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+}
+.hero-proof span { display: flex; align-items: center; gap: 6px; }
+
+/* PROBLEM */
+.problem {
+  padding: 80px 0;
+  background: var(--dark);
+  color: white;
+}
+.problem h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; margin-bottom: 48px;
+  color: white;
+}
+.problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.problem-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 28px;
+}
+.problem-icon { font-size: 2rem; margin-bottom: 12px; }
+.problem-title { font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 8px; }
+.problem-text { font-size: 0.95rem; color: #94a3b8; line-height: 1.6; }
+
+/* SOLUTION / HOW IT WORKS */
+.how {
+  padding: 80px 0;
+}
+.how h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; color: var(--heading); margin-bottom: 16px;
+}
+.how-sub {
+  text-align: center; font-size: 1.1rem;
+  color: var(--text); margin-bottom: 56px; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px; position: relative;
+}
+.step {
+  text-align: center; position: relative;
+}
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent); color: white;
+  font-size: 1.3rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.step-title { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.step-text { font-size: 0.9rem; color: var(--text); }
+
+/* FEATURES */
+.features {
+  padding: 80px 0;
+  background: var(--surface);
+}
+.features h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; color: var(--heading); margin-bottom: 48px;
+}
+.features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.feat-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px;
+  transition: all 0.2s;
+}
+.feat-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-3px);
+}
+.feat-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 16px;
+}
+.feat-icon.b { background: rgba(37,99,235,0.1); }
+.feat-icon.g { background: rgba(16,185,129,0.1); }
+.feat-icon.o { background: rgba(245,158,11,0.1); }
+.feat-icon.p { background: rgba(124,58,237,0.1); }
+.feat-icon.r { background: rgba(239,68,68,0.1); }
+.feat-icon.c { background: rgba(6,182,212,0.1); }
+.feat-title { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 6px; }
+.feat-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+
+/* USE CASES */
+.usecases {
+  padding: 80px 0;
+}
+.usecases h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; color: var(--heading); margin-bottom: 16px;
+}
+.usecases-sub {
+  text-align: center; font-size: 1.1rem;
+  color: var(--text); margin-bottom: 48px;
+}
+.usecase-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.usecase {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px; text-align: center;
+  transition: all 0.2s;
+}
+.usecase:hover { border-color: var(--blue); transform: translateY(-2px); }
+.usecase-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.usecase-name { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+.usecase-desc { font-size: 0.85rem; color: var(--text); }
+
+/* PRICING */
+.pricing {
+  padding: 80px 0;
+  background: var(--surface);
+}
+.pricing h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; color: var(--heading); margin-bottom: 16px;
+}
+.pricing-sub {
+  text-align: center; font-size: 1.1rem;
+  color: var(--text); margin-bottom: 48px;
+}
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px; max-width: 900px; margin: 0 auto;
+}
+.price-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px; text-align: center;
+  position: relative; transition: all 0.2s;
+}
+.price-card.popular {
+  border-color: var(--blue);
+  box-shadow: 0 8px 32px rgba(37,99,235,0.12);
+}
+.price-pop-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--blue); color: white;
+  padding: 4px 16px; border-radius: 12px;
+  font-size: 0.75rem; font-weight: 700;
+}
+.price-name { font-size: 1.2rem; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.price-amount { font-size: 3rem; font-weight: 900; color: var(--heading); line-height: 1; margin-bottom: 4px; }
+.price-period { font-size: 0.85rem; color: var(--text); margin-bottom: 24px; }
+.price-features { text-align: left; margin-bottom: 28px; }
+.price-feat {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 6px 0; font-size: 0.9rem;
+}
+.price-check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+.price-cta {
+  display: block; width: 100%;
+  padding: 14px; border-radius: 10px;
+  font-weight: 700; font-size: 1rem;
+  text-align: center; transition: all 0.2s; border: none; cursor: pointer;
+}
+.price-cta.primary { background: var(--blue); color: white; }
+.price-cta.primary:hover { background: #1d4ed8; }
+.price-cta.outline { background: white; color: var(--blue); border: 2px solid var(--blue); }
+.price-cta.outline:hover { background: rgba(37,99,235,0.05); }
+
+/* FAQ */
+.faq {
+  padding: 80px 0;
+}
+.faq h2 {
+  font-size: 2.2rem; font-weight: 800;
+  text-align: center; color: var(--heading); margin-bottom: 48px;
+}
+.faq-list {
+  max-width: 700px; margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  cursor: pointer;
+}
+.faq-q {
+  font-size: 1.05rem; font-weight: 600; color: var(--heading);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 1.3rem; color: var(--blue); }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-size: 0.95rem; color: var(--text); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+/* CTA FINAL */
+.cta-final {
+  padding: 80px 0;
+  background: var(--dark);
+  text-align: center;
+  color: white;
+}
+.cta-final h2 {
+  font-size: 2.5rem; font-weight: 900; margin-bottom: 16px;
+}
+.cta-final p {
+  font-size: 1.15rem; color: #94a3b8; margin-bottom: 36px;
+  max-width: 550px; margin-left: auto; margin-right: auto;
+}
+.btn-white {
+  background: white; color: var(--blue);
+  padding: 16px 40px; border-radius: 10px;
+  font-weight: 700; font-size: 1.1rem;
+  display: inline-block; transition: all 0.2s;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 32px 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  .hero-sub { font-size: 1rem; }
+  .nav-links { display: none; }
+  .problem h2, .how h2, .features h2, .usecases h2, .pricing h2, .faq h2 { font-size: 1.7rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">Voice<span>Book</span> AI</div>
+    <div class="nav-links">
+      <a href="#how">Comment ça marche</a>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#usecases">Cas d'usage</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Démo Gratuite</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-pill">🎙️ Prise de Rendez-vous par IA Vocale</div>
+    <h1>Votre Standard IA <span>Disponible 24h/24</span></h1>
+    <p class="hero-sub">
+      Un agent vocal IA qui répond à vos appels, prend les rendez-vous, gère les urgences et trace tout automatiquement — 24h/24, 7j/7. Zéro appel manqué. Zéro attente. Zéro embauche.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Demander une Démo Gratuite</a>
+      <a href="#how" class="btn-secondary">Comment ça marche</a>
+    </div>
+    <div class="hero-proof">
+      <span>✅ Opérationnel en 48h</span>
+      <span>✅ Aucun matériel requis</span>
+      <span>✅ Sans engagement</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="problem">
+  <div class="container">
+    <h2>Ça vous parle ?</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📵</div>
+        <div class="problem-title">Appel manqué = client perdu</div>
+        <div class="problem-text">Chaque appel manqué, c'est un client qui appelle votre concurrent. 85% des gens qui n'arrivent pas à vous joindre ne rappellent jamais.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🌙</div>
+        <div class="problem-title">Personne ne répond le soir</div>
+        <div class="problem-text">Les urgences n'attendent pas les heures de bureau. Vos clients ont besoin d'aide à 22h, mais votre cabinet est fermé.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <div class="problem-title">Embaucher un(e) secrétaire coûte cher</div>
+        <div class="problem-text">Un(e) secrétaire à temps plein coûte 25-40K€/an. Et il/elle ne peut pas répondre à 3 appels en même temps, ni travailler la nuit et les week-ends.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how" id="how">
+  <div class="container">
+    <h2>Comment ça marche</h2>
+    <p class="how-sub">Mise en place en 48h. Aucun code. Aucun matériel. On branche votre numéro et c'est parti.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">On configure votre agent</div>
+        <div class="step-text">On personnalise la voix, le ton et le flux de conversation pour votre activité.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">On connecte votre téléphone</div>
+        <div class="step-text">On relie votre numéro professionnel. Les appels sont pris en charge instantanément par l'agent IA.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Vos clients appellent, l'IA répond</div>
+        <div class="step-text">L'agent écoute, comprend le problème, collecte les infos et prend le rendez-vous automatiquement.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Vous êtes notifié</div>
+        <div class="step-text">Tout est tracé dans Google Sheets + Calendar. Les urgences déclenchent une alerte Slack/SMS instantanée.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features" id="features">
+  <div class="container">
+    <h2>Tout ce que fait votre secrétaire. Mais 24h/24.</h2>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon b">📞</div>
+        <div class="feat-title">Conversations vocales naturelles</div>
+        <div class="feat-text">Parle comme une vraie personne — calme, direct, humain. Vos clients ne verront pas la différence. Zéro ton robotique, zéro menu téléphonique.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon g">📅</div>
+        <div class="feat-title">Prise de rendez-vous automatique</div>
+        <div class="feat-text">Propose les créneaux disponibles, laisse le client choisir, et crée l'événement dans votre Google Calendar automatiquement.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon r">🚨</div>
+        <div class="feat-title">Détection d'urgences et alertes</div>
+        <div class="feat-text">Détecte les vraies urgences, collecte les infos critiques et vous envoie une alerte instantanée par Slack ou SMS. 24h/24, même la nuit.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon o">🌙</div>
+        <div class="feat-title">Logique jour / nuit</div>
+        <div class="feat-text">Le jour : prise de rendez-vous. La nuit : collecte les infos et promet un rappel le matin. Les urgences sont toujours traitées.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon p">📊</div>
+        <div class="feat-title">Suivi complet des appels</div>
+        <div class="feat-text">Chaque appel est tracé avec le nom, téléphone, adresse, problème et créneau choisi. Le tout dans votre Google Sheets.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon c">🔌</div>
+        <div class="feat-title">Fonctionne avec votre numéro actuel</div>
+        <div class="feat-text">Pas besoin de changer de numéro. On se connecte à votre ligne existante via Twilio. Zéro perturbation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- USE CASES -->
+<div class="usecases" id="usecases">
+  <div class="container">
+    <h2>Conçu pour les entreprises de services</h2>
+    <p class="usecases-sub">Tout professionnel qui prend des rendez-vous par téléphone.</p>
+    <div class="usecase-grid">
+      <div class="usecase">
+        <div class="usecase-icon">🔧</div>
+        <div class="usecase-name">Plombiers</div>
+        <div class="usecase-desc">Fuites urgentes + réparations planifiées</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">⚡</div>
+        <div class="usecase-name">Électriciens</div>
+        <div class="usecase-desc">Pannes + rendez-vous d'installation</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🏥</div>
+        <div class="usecase-name">Cabinets médicaux</div>
+        <div class="usecase-desc">Rendez-vous patients + appels urgents</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🦷</div>
+        <div class="usecase-name">Dentistes</div>
+        <div class="usecase-desc">Contrôles + urgences dentaires</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">❄️</div>
+        <div class="usecase-name">Chauffagistes / Clim</div>
+        <div class="usecase-desc">Pannes chauffage/clim + maintenance</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">⚖️</div>
+        <div class="usecase-name">Cabinets d'avocats</div>
+        <div class="usecase-desc">Prise de dossier + rendez-vous consultation</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🐕</div>
+        <div class="usecase-name">Vétérinaires</div>
+        <div class="usecase-desc">Urgences animaux + prise de rendez-vous</div>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🏠</div>
+        <div class="usecase-name">Gestion immobilière</div>
+        <div class="usecase-desc">Demandes locataires + maintenance</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing" id="pricing">
+  <div class="container">
+    <h2>Tarifs simples et transparents</h2>
+    <p class="pricing-sub">Pas de frais cachés. Pas d'engagement longue durée. Résiliable à tout moment.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-amount">149€</div>
+        <div class="price-period">par mois</div>
+        <div class="price-features">
+          <div class="price-feat"><span class="price-check">✓</span> 1 numéro de téléphone</div>
+          <div class="price-feat"><span class="price-check">✓</span> Jusqu'à 100 appels/mois</div>
+          <div class="price-feat"><span class="price-check">✓</span> Prise de rendez-vous</div>
+          <div class="price-feat"><span class="price-check">✓</span> Sync Google Calendar</div>
+          <div class="price-feat"><span class="price-check">✓</span> Suivi des appels (Google Sheets)</div>
+          <div class="price-feat"><span class="price-check">✓</span> Logique jour/nuit</div>
+          <div class="price-feat"><span class="price-check">✓</span> Support par email</div>
+        </div>
+        <a href="#contact" class="price-cta outline">Essai Gratuit</a>
+      </div>
+      <div class="price-card popular">
+        <div class="price-pop-badge">LE PLUS POPULAIRE</div>
+        <div class="price-name">Professionnel</div>
+        <div class="price-amount">299€</div>
+        <div class="price-period">par mois</div>
+        <div class="price-features">
+          <div class="price-feat"><span class="price-check">✓</span> Tout le Starter inclus</div>
+          <div class="price-feat"><span class="price-check">✓</span> Jusqu'à 500 appels/mois</div>
+          <div class="price-feat"><span class="price-check">✓</span> Alertes urgences (Slack/SMS)</div>
+          <div class="price-feat"><span class="price-check">✓</span> Voix et ton personnalisés</div>
+          <div class="price-feat"><span class="price-check">✓</span> Flux de conversation sur mesure</div>
+          <div class="price-feat"><span class="price-check">✓</span> Support prioritaire</div>
+          <div class="price-feat"><span class="price-check">✓</span> Rapport de performance mensuel</div>
+        </div>
+        <a href="#contact" class="price-cta primary">Essai Gratuit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq" id="faq">
+  <div class="container">
+    <h2>Questions Fréquentes</h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Mes clients vont savoir que c'est une IA ?</div>
+        <div class="faq-a">La plupart non. L'agent utilise une voix humaine naturelle, parle calmement, utilise des expressions conversationnelles comme "ok", "très bien", "je vois" et gère les interruptions naturellement. On l'a conçu pour ressembler à un(e) vrai(e) secrétaire, pas à un robot.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Je dois changer mon numéro de téléphone ?</div>
+        <div class="faq-a">Non. On se connecte à votre numéro professionnel existant via un renvoi d'appel ou une intégration Twilio. Vos clients continuent d'appeler le même numéro.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Combien de temps pour la mise en place ?</div>
+        <div class="faq-a">48 heures maximum. On personnalise la voix, le ton et le flux de conversation pour votre activité, on connecte votre numéro et c'est en ligne.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Que se passe-t-il en cas de vraie urgence ?</div>
+        <div class="faq-a">L'agent détecte les urgences automatiquement, collecte l'adresse et le téléphone du client, et vous envoie une alerte instantanée par Slack ou SMS. Ça fonctionne 24h/24, y compris la nuit et les week-ends.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Et si l'IA n'arrive pas à gérer un appel ?</div>
+        <div class="faq-a">Vous pouvez configurer un numéro de secours. Si l'agent ne peut pas aider, l'appel est transféré à une vraie personne. Vous gardez toujours le contrôle.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Je peux tester avant de m'engager ?</div>
+        <div class="faq-a">Oui ! On vous propose un appel démo gratuit pour entendre exactement comment l'agent sonne et se comporte avec votre type d'activité.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-final" id="contact">
+  <div class="container">
+    <h2>Arrêtez de perdre des appels.<br>Remplissez votre agenda.</h2>
+    <p>Demandez une démo gratuite et écoutez votre standard IA en action. Opérationnel en 48h, sans engagement.</p>
+    <a href="mailto:contact@voicebook.ai" class="btn-white">Demander une Démo Gratuite →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2026 VoiceBook AI — Prise de rendez-vous par IA vocale pour les professionnels de services.</p>
+  </div>
+</footer>
+
+</body>
+</html>
